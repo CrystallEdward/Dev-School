@@ -1,18 +1,19 @@
-let a =('1 2 3');
-function highandlow(a){
-    a=a.split(' ')
-    let max=a[0];
-    let  min=a[0];
-    for (let k = 0; k<a.length;k++){
-        if (max<parseInt(a[k])){
-            max=a[k];
-        }
-        for (let k = 0; k<a.length;k++) {
-            if (parseInt(a[k])<min){
-                min=a[k];
+function getRootProperty(object, target) {
+    let result = null;
+
+    function search(object, path) {
+        if (Array.isArray(object)) {
+            if (object.includes(target) && result === null) {
+                result = path[0];
+            }
+        } else if (typeof object === 'object') {
+            for (const key in object) {
+                search(object[key], path.concat(key));
             }
         }
     }
-    return[max, min].join(' ');
+
+    search(object, []);
+
+    return result;
 }
-console.log(highandlow(a))

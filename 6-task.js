@@ -1,17 +1,24 @@
-let num=12345;
-function func(num){
-    let arr=(''+num).split('').map(Number)
-    let temp =0;
-    for (i=0;i<=arr.length-1;i++){
-        for (j=0;j<=arr.length-i;j++){
-            if (arr[j]<arr[j+1]){
-                let temp=arr[j];
-                arr[j]=arr[j+1];
-                arr[j+1]=temp;
+function landPerimeter(arr) {
+    let perimeter = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+            if (arr[i][j] === 'X') {
+                if (i === 0 || arr[i - 1][j] === 'O') {
+                    perimeter++;
+                }
+                if (i === arr.length - 1 || arr[i + 1][j] === 'O') {
+                    perimeter++;
+                }
+                if (j === 0 || arr[i][j - 1] === 'O') {
+                    perimeter++;
+                }
+                if (j === arr[i].length - 1 || arr[i][j + 1] === 'O') {
+                    perimeter++;
+                }
             }
         }
     }
-    console.log(arr.join(""));
 
+    return "Total land perimeter: " + perimeter;
 }
-func(num)
