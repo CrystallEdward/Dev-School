@@ -1,11 +1,16 @@
-let m = 1071225;
-function FindNB (m){
-    let n = 0
-    n=((1+(1+8*m**0.5)**0.5)/2)-1;
-    if(n%1==0){
-        console.log(n)
-    } else {
-        console.log(-1)
+let str=["tsar", "rat", "tar", "star", "tars", "cheese"];
+function Separate(str){
+    temp={};
+    for (word of str){
+        sorted=word.split('').sort().join('');
+        if(temp.hasOwnProperty(sorted)){
+            temp[sorted].push(word);
+        }
+        else {
+            temp[sorted]=[word];
+        }
     }
+    res=Object.values(temp);
+    console.log(res)
 }
-FindNB(m)
+Separate(str)

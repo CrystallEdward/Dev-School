@@ -1,21 +1,25 @@
-let m = 20187049;
-function isPrime(m){
-    let k=1;
-    res=true;
-    for (n=2;n<=100000;n++){
-        if ((m%n===0)&&(n!=m)){
-            k++;
+function unpackSausages(truck) {
+    let unload = [];
+    truck.forEach(function (box) {
+        box.forEach(function (pack) {
+            let count = 0;
+            if (pack.startsWith('[') && pack.endsWith(']') && pack.length == 6) {
+                pack=pack.replace('[','').replace(']','');
+                if (pack[0] === pack[1]
+                    && pack[0] === pack[2]
+                    && pack[0] === pack[3]
+                    && pack[1] === pack[2]
+                    && pack[1] === pack[3]
+                    && pack[1] === pack[3]) {
+                    unload.push(pack);
+                }
+            }
+        })
+    })
+    for (let i =1 ; i<=unload.length-1; i++){
+        if (i%4===0){
+            unload.splice(i,1)
         }
     }
-    console.log(k);
-    if ((k>2)||(m<0)||(m==1)){
-        res = false;
-    }
-    else if (k==1){
-        res = true;
-    }
-    return res;
+    return unload.join('').replaceAll('',' ').trim();
 }
-
-console.log(isPrime(m));
-
